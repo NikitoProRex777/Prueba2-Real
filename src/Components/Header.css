@@ -1,0 +1,93 @@
+/* src/components/Header.css */
+
+/* 1. Contenedor principal del Header */
+.header-container {
+  display: flex; /* Activa Flexbox para alinear elementos */
+  justify-content: space-between; /* Envía el logo a la izq. y la nav a la der. */
+  align-items: center; /* Centra todo verticalmente */
+  padding: 1rem 2.5rem; /* Espaciado interno (arriba/abajo | izq/der) */
+  background-color: #ffffff;
+  border-bottom: 1px solid #eaeaea; /* Línea divisoria sutil */
+}
+
+/* 2. Estilo del Logo */
+.logo a {
+  font-size: 1.7rem; /* Tamaño grande */
+  font-weight: 700; /* Negrita */
+  color: #111; /* Color oscuro */
+  text-decoration: none;
+}
+
+/* 3. Estilo general para AMBAS navegaciones (main-nav y user-nav) */
+nav ul {
+  display: flex; /* Pone los botones en fila */
+  align-items: center;
+  list-style: none; /* Quita los puntos de la lista */
+  margin: 0;
+  padding: 0;
+}
+
+/* * 4. ¡AQUÍ ESTÁ LA SOLUCIÓN AL ORDEN! 
+ * Damos un margen a la izquierda a CADA botón para separarlos.
+ * Tu carrito (<li>) también recibirá este margen automáticamente.
+ */
+nav li {
+  margin-left: 28px; /* <-- ¡Ajusta este número si quieres más o menos espacio! */
+}
+
+/* 5. Estilo de los enlaces (los "botones") */
+nav a {
+  text-decoration: none;
+  color: #333; /* Color de texto gris oscuro */
+  font-size: 1rem;
+  font-weight: 500; /* Un poco más grueso que lo normal */
+  padding: 6px 0;
+  position: relative; 
+  transition: color 0.2s ease;
+  /* Hacemos que el carrito (emoji) se alinee bien */
+  display: flex;
+  align-items: center;
+}
+
+/* 6. Efecto al pasar el ratón */
+nav a:hover {
+  color: #000; /* Se pone negro al pasar el ratón */
+}
+
+/* 7. Estilo para el enlace ACTIVO (la página en la que estás) */
+nav a.active {
+  color: #000;
+  font-weight: 700; /* Más negrita */
+}
+
+/* (Opcional) Línea debajo del enlace activo */
+nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #000;
+}
+/* src/components/Header.css */
+
+/* --- Estilo para el botón de Cerrar Sesión --- */
+.logout-button {
+  background-color: #000000; /* Fondo negro */
+  color: #ffffff;           /* Texto blanco */
+  border: none;
+  padding: 8px 16px;       /* Espaciado interno (lo hace ver como botón) */
+  font-size: 0.9rem;       /* Un poco más pequeño que los enlaces */
+  font-weight: 600;
+  border-radius: 4px;      /* Esquinas redondeadas */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  line-height: 1;          /* Ajuste de altura de línea */
+}
+
+/* Efecto al pasar el ratón */
+.logout-button:hover {
+  background-color: #333; /* Un gris oscuro */
+  color: #ffffff;
+}

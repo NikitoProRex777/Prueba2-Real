@@ -1,0 +1,31 @@
+/* src/pages/Catalogo.css */
+
+.catalogo-container {
+  max-width: 1200px;
+  margin: 0 auto; /* Centra el contenedor */
+  padding: 2rem 1rem;
+}
+
+.catalogo-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #111;
+}
+
+.product-grid {
+  display: grid;
+  /* * Esto crea una grilla responsiva:
+   * - En pantallas pequeñas: 1 columna (min 280px)
+   * - En pantallas grandes: Múltiples columnas (aprox 300px)
+   */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem; /* Espacio entre las tarjetas */
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 4rem 0;
+  color: #555;
+}

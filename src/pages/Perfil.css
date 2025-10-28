@@ -1,0 +1,170 @@
+/* src/pages/Perfil.css */
+
+/* --- 1. Contenedor Principal (Layout Simple) --- */
+.perfil-container-simple {
+  max-width: 900px; /* Hacemos el contenedor más centrado */
+  margin: 2rem auto; /* Centrado */
+  padding: 0 1rem; /* Espacio en móviles */
+}
+
+/* --- 2. Saludo Centrado --- */
+.perfil-saludo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.perfil-saludo h3 {
+  margin-top: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* --- 3. Contenido Principal --- */
+.perfil-content-simple {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* Mantiene los bordes redondeados */
+}
+
+.perfil-header {
+  border-bottom: 1px solid #eee;
+  padding: 2rem 2.5rem;
+  margin-bottom: 0; /* Quitamos el margen, la tarjeta lo maneja */
+}
+
+.perfil-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.perfil-header p {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+/* --- 4. Tarjeta de Información --- */
+.perfil-card {
+  /* No necesita borde, ya está en el contenedor */
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  background: #fdfdfd;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.btn-edit {
+  background: none;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #495057;
+  transition: background-color 0.2s ease;
+}
+.btn-edit:hover {
+  background: #f1f3f5;
+}
+
+/* --- 5. Cuerpo de la Tarjeta (Formulario y Vista) --- */
+.card-body {
+  padding: 2.5rem;
+}
+
+/* 5a. Vista (Texto) */
+.perfil-info-view p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+.perfil-info-view p strong {
+  color: #000;
+  margin-right: 8px;
+}
+.perfil-info-view p:last-child {
+  margin-bottom: 0;
+}
+
+/* 5b. Formulario (Edición) */
+.perfil-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem; /* Espacio entre cada campo */
+}
+
+.perfil-form label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: -0.8rem; /* Acerca la etiqueta al input */
+}
+
+.perfil-form input[type="text"],
+.perfil-form input[type="email"] {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.perfil-form input:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+  outline: none;
+}
+
+.perfil-form input:disabled {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* --- 6. Footer de la Tarjeta (Botón Cerrar Sesión) --- */
+.card-footer {
+  padding: 1.5rem 2.5rem;
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  text-align: right; /* Alinea el botón a la derecha */
+}
+
+.btn-cerrar-sesion {
+  background-color: #d9534f; /* Rojo de peligro/cierre */
+  border: none;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cerrar-sesion:hover {
+  background-color: #c9302c; /* Rojo más oscuro */
+}
