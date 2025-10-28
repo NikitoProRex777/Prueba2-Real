@@ -1,0 +1,113 @@
+/* src/pages/FormStyles.css */
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1rem; /* Más espacio vertical */
+  min-height: 70vh; /* Ocupa al menos el 70% de la altura de la pantalla */
+  background-color: #f9f9f9; /* Un fondo gris muy claro */
+}
+
+.form-box {
+  width: 100%;
+  max-width: 450px; /* Ancho máximo del formulario */
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.form-box h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #111;
+}
+
+.form-group {
+  margin-bottom: 1.5rem; /* Espacio entre cada campo (email, pass, etc.) */
+}
+
+.form-group label {
+  display: block; /* Pone el label encima del input */
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box; /* Importante para que el padding no rompa el ancho */
+}
+
+.form-submit-button {
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #000000; /* Botón negro */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-submit-button:hover {
+  background-color: #333; /* Un poco más claro al pasar el ratón */
+}
+/* Add to FormStyles.css */
+
+/* Style for invalid input */
+.form-control.is-invalid, /* If using bootstrap classes */
+input.is-invalid /* Generic input */
+ {
+  border-color: #dc3545; /* Bootstrap danger red */
+}
+.form-control.is-invalid:focus,
+input.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25); 
+}
+
+/* Style for the error message */
+.invalid-feedback {
+  display: block; /* Make sure it's visible */
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em; 
+  color:
+
+  /* Añadir a FormStyles.css si no lo tienes */
+
+/* Estilo para el input inválido (borde rojo) */
+.form-control.is-invalid, /* Si usas Bootstrap */
+input.is-invalid /* O un estilo propio */ {
+  border-color: #dc3545; /* Rojo */
+}
+.form-control.is-invalid:focus,
+input.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25); /* Sombra roja */
+}
+
+/* Estilo para el mensaje de error */
+.invalid-feedback {
+  display: block; /* Asegura que se muestre */
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545; /* Rojo */
+}
+
+/* (Opcional) Si el error general del formulario necesita estilo */
+.form-error {
+  color: #dc3545; /* Rojo */
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}

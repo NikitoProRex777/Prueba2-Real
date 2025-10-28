@@ -1,0 +1,542 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* ====== HEADER ====== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+  border-bottom: 1px solid #eaeaea;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: #111;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #FF4500; /* Naranja Básquet */
+}
+
+/* ====== HERO ====== */
+
+
+
+.hero {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    height: 80vh;
+    color: #fff; 
+    background: url("https://media.istockphoto.com/id/183757408/es/foto/cancha-de-racquetball-y-canchas-de-b%C3%A1squetbol.jpg?s=612x612&w=0&k=20&c=Rk-Zdr5B0RWpTtFIUajCTTGLj15idLaCuqAP_lyn3YM=") no-repeat center center/cover;
+    position: relative; 
+    z-index: 1;
+}
+
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: -1;
+}
+
+
+.hero h1 {
+    font-size: 4.5em; 
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 3px; 
+    margin-bottom: 0.2em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9); 
+}
+
+
+.hero p {
+    font-size: 1.6em; 
+    max-width: 600px;
+    margin-bottom: 2em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); 
+}
+
+
+.btn-principal {
+    display: inline-block;
+    background: #FF4500; 
+    color: #fff;
+    padding: 15px 40px; 
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+}
+
+.btn-principal:hover {
+    background: #ff6347; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* ====== PRODUCTOS ====== */
+.productos {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.productos h2 {
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 0 5px;
+}
+
+.card p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.card button {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border: none;
+  background: #111;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.card button:hover {
+  background: #FF4500;
+}
+
+/* ====== FOOTER ====== */
+footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+.reseñas {
+  padding: 20px;
+  text-align: center;
+}
+
+.reseña-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.reseña-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.reseña-card:hover {
+  transform: translateY(-5px);
+}
+
+.reseña-card h3 {
+  color: #333;
+  font-size: 1.5em;
+  margin-top: 0;
+}
+
+.reseña-card .estrellas {
+  color: gold;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.reseña-card .estrellas .star-vacia {
+  color: #ccc;
+}
+
+.reseña-card p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #555;
+}
+
+
+.carrusel-auto {
+  width: 80%;
+  max-width: 900px;
+  height: 600px; 
+  margin: 40px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carrusel-slides {
+  display: flex;
+  width: calc(100% * 13); 
+  height: 100%;
+  animation: slide-auto 30s infinite linear; 
+}
+
+.carrusel-slides:hover {
+  animation-play-state: paused;
+}
+
+.carrusel-slides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes slide-auto {
+  0% { transform: translateX(0%); }
+  8% { transform: translateX(0%); }
+  10% { transform: translateX(-7.69%); } /* Mueve al 2do slide */
+  18% { transform: translateX(-7.69%); }
+  20% { transform: translateX(-15.38%); } /* Mueve al 3er slide */
+  28% { transform: translateX(-15.38%); }
+  30% { transform: translateX(-23.07%); } /* Mueve al 4to slide */
+  38% { transform: translateX(-23.07%); }
+  40% { transform: translateX(-30.76%); } /* Mueve al 5to slide */
+  48% { transform: translateX(-30.76%); }
+  50% { transform: translateX(-38.45%); } /* Mueve al 6to slide */
+  58% { transform: translateX(-38.45%); }
+  60% { transform: translateX(-46.14%); } /* Mueve al 7mo slide */
+  68% { transform: translateX(-46.14%); }
+  70% { transform: translateX(-53.83%); } /* Mueve al 8vo slide */
+  78% { transform: translateX(-53.83%); }
+  80% { transform: translateX(-61.52%); } /* Mueve al 9no slide */
+  88% { transform: translateX(-61.52%); }
+  90% { transform: translateX(-69.21%); } /* Mueve al 10mo slide */
+  98% { transform: translateX(-69.21%); }
+  100% { transform: translateX(-76.9%); } /* Mueve al 11vo slide */
+  /*estos sirven para que se mueva solo sin tener que uno clicar*/
+}
+
+
+
+
+
+
+@keyframes fadeInSlideUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+
+.reseñas {
+  padding: 20px;
+  text-align: center;
+}
+
+.reseña-list {
+  /* ... tus estilos de grid para la lista de reseñas ... */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.reseña-card {
+  /* ... tus estilos para cada tarjeta de reseña ... */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease; /* Solo transiciones, no animación */
+}
+
+.reseña-card:hover {
+  transform: translateY(-5px);
+}
+
+
+.modal {
+  display: flex;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.3s, opacity 0.3s ease-in-out; 
+}
+
+.modal.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s 0s, opacity 0.3s ease-in-out;
+}
+
+.modal-contenido {
+  background-color: #fefefe;
+  padding: 30px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  text-align: center;
+
+ 
+  transform: scale(0.9); 
+  opacity: 0; 
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out; 
+}
+
+
+.modal.visible .modal-contenido {
+  transform: scale(1); 
+  opacity: 1; 
+  
+}
+
+
+.modal-contenido img {
+  max-width: 150px;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  animation: fadeInSlideUp 0.5s ease-out forwards; 
+  opacity: 0; 
+}
+
+.modal-contenido h2 { 
+  animation: fadeInSlideUp 0.5s ease-out 0.1s forwards; 
+  opacity: 0;
+}
+
+.modal-contenido h3 { 
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  animation: fadeInSlideUp 0.5s ease-out 0.2s forwards; 
+  opacity: 0;
+}
+
+.modal-contenido p {
+  font-size: 1.1em;
+  margin-bottom: 5px;
+  animation: fadeInSlideUp 0.5s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.modal-contenido p.total {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-top: 20px;
+  border-top: 2px dashed #ccc;
+  padding-top: 15px;
+  animation: fadeInSlideUp 0.5s ease-out 0.4s forwards; 
+  opacity: 0;
+}
+
+.cerrar-boleta {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute; 
+  right: 15px;
+  top: 10px;
+  transition: color 0.3s ease;
+}
+
+.cerrar-boleta:hover,
+.cerrar-boleta:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.9em;
+  margin-top: -5px;
+  display: block;
+}
+
+.video-promo {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f8f8;
+}
+
+.video-promo h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+
+.video-container {
+  max-width: 800px;
+  margin: 0 auto; 
+}
+
+
+.video-container iframe {
+  display: block; 
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* src/index.css */
+
+/* ... (al final del archivo) ... */
+
+/* Estilo para el nuevo botón "Ver Detalle" */
+.btn-detalle {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border: none;
+  background: #111;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-decoration: none; /* Quita el subrayado del enlace */
+  display: inline-block; /* Permite que el padding funcione bien */
+}
+
+.btn-detalle:hover {
+  background: #FF4500;
+  color: #fff; /* Asegura que el texto siga siendo blanco */
+}
+/* Pega esto al final de tu 'src/index.css' */
+
+/* 1. Hacemos que el contenedor de React ocupe toda la altura */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+/* 2. El 'div' que acabamos de crear */
+.site-container {
+  display: flex;
+  flex-direction: column; /* Apila los elementos (Header, main, Footer) */
+  min-height: 100vh; /* ¡Importante! Ocupa al menos el 100% de la altura de la pantalla */
+}
+
+/* 3. Hacemos que el contenido principal (main) crezca */
+.site-container main {
+  flex-grow: 1; /* ¡Esta es la línea clave! */
+                /* 'main' se expande y empuja el Footer hacia abajo */
+}
+
+/* 4. (Opcional) Nos aseguramos que header y footer no se encojan */
+.site-container header,
+.site-container footer {
+  flex-shrink: 0;
+}
+

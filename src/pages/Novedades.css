@@ -1,0 +1,29 @@
+/* src/pages/Novedades.css */
+
+.novedades-page-container {
+  width: 100%;
+}
+
+.novedades-hero {
+  /* Fondo oscuro y texto claro para impacto */
+  background-color: #111;
+  color: #ffffff;
+  padding: 4rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem; /* Espacio antes de que empiecen los productos */
+}
+
+.novedades-hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.novedades-hero p {
+  font-size: 1.25rem;
+  color: #ccc;
+  margin-top: 0.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
