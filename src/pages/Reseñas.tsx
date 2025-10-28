@@ -116,7 +116,7 @@ export function Reseñas() {
             <div className="estrellas">
               <span className="star">★</span><span className="star-vacia">☆</span><span className="star-vacia">☆</span><span className="star-vacia">☆</span><span className="star-vacia">☆</span>
             </div>
-            <p>Me dijeron que estaban agotadas las kai y me enoje marditos</p>
+            <p>llegue y no habia ninguna kai xd</p>
           </article>
 
         </section>
