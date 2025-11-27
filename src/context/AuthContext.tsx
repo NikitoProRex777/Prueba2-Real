@@ -1,49 +1,91 @@
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// CORRECTO
-import React, { createContext, useContext, useState } from 'react';
-import type { ReactNode } from 'react';
-
-
-
-
-// 1. Definimos qué datos tendrá el contexto
-interface AuthContextType {
-  user: any; // Aquí guardaremos los datos del usuario (o null)
-  login: (userData: any) => void; // Función para iniciar sesión
-  logout: () => void; // Función para cerrar sesión
+// Definimos la forma del Usuario tal cual viene del Backend
+interface User {
+  id: number;
+  nombre: string;
+  email: string;
+  role: string;
+  zapatillaFavorita: string;
 }
 
-// 2. Creamos el Contexto
+interface AuthContextType {
+  user: User | null;
+  token: string | null;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
+  isAuthenticated: boolean;
+}
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// 3. Creamos el Proveedor (AuthProvider)
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<any>(null);
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
-  // Esta es la función que llamarás desde tu página de Login (InicioSesion.tsx)
-  // cuando el inicio de sesión sea exitoso.
-  const login = (userData: any) => {
-    setUser(userData);
-    // Idealmente, aquí guardas el token en localStorage
+  // 1. Al cargar la página, revisamos si ya había sesión guardada
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    const storedUser = localStorage.getItem('user');
+
+    if (storedToken && storedUser) {
+      setToken(storedToken);
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // 2. Función LOGIN: Conecta con Spring Boot
+  const login = async (email: string, password: string) => {
+    try {
+      const response = await fetch('http://localhost:8081/api/v1/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Credenciales incorrectas');
+      }
+
+      const data = await response.json();
+      
+      // data viene como: { token: "...", role: "...", usuario: "...", id: ... }
+      // Construimos el objeto usuario para guardar en React
+      const userData: User = {
+        id: data.id || 0,
+        nombre: data.usuario, // El backend devuelve "usuario", nosotros usamos "nombre"
+        email: email,
+        role: data.role,
+        zapatillaFavorita: data.zapatillaFavorita
+      };
+
+      // Guardamos en estado y localStorage
+      setToken(data.token);
+      setUser(userData);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(userData));
+
+    } catch (error) {
+      console.error("Error Login:", error);
+      throw error; // Lanzamos el error para que la página de Login muestre la alerta
+    }
   };
 
-  // Esta función la llama el botón "Cerrar Sesión" del Header
+  // 3. Función LOGOUT
   const logout = () => {
     setUser(null);
-    // Aquí limpias el token de localStorage
+    setToken(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   };
 
-  const value = {
-    user,
-    login,
-    logout
-  };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, token, login, logout, isAuthenticated: !!user }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-// 4. Creamos el Hook (useAuth)
-// Este es el que usa tu Header.tsx
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {

@@ -9,11 +9,21 @@ export interface Producto {
   brand: string;
   description: string;
   technology?: string; // (El '?' lo hace opcional)
-  availableSizes: string[]; // <-- ¡CORRECCIÓN! Esta línea es nueva
+  availableSizes: string[];
+  stock: Record<string, number>; // Stock por talla: { "US 7": 5, "US 8": 3, etc }
 }
 
 // Un array de tallas de ejemplo para reutilizar
 const TALLAS_COMUNES = ["US 7", "US 7.5", "US 8", "US 8.5", "US 9", "US 9.5", "US 10", "US 11", "US 12"];
+
+// Función helper para generar stock aleatorio por talla
+function generateStock(tallas: string[]): Record<string, number> {
+  const stock: Record<string, number> = {};
+  tallas.forEach(talla => {
+    stock[talla] = Math.floor(Math.random() * 15) + 1; // Stock entre 1 y 15
+  });
+  return stock;
+}
 
 export const TodoslosProductos: Producto[] = [
   // --- TUS 7 PRODUCTOS ORIGINALES ---
@@ -26,7 +36,8 @@ export const TodoslosProductos: Producto[] = [
     brand: 'Adidas',
     description: 'Las Dame X celebran a Damian Lillard. Diseñadas para el clutch, ofrecen una amortiguación Bounce Pro ligera y una suela con agarre superior para cortes rápidos.',
     technology: 'Bounce Pro',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p2',
@@ -37,7 +48,8 @@ export const TodoslosProductos: Producto[] = [
     brand: 'Adidas',
     description: 'El futuro del baloncesto. Las Harden Vol. 9 combinan un diseño futurista con la comodidad de la amortiguación JET BOOST, ideal para creadores de juego.',
     technology: 'JET BOOST',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p3',
@@ -48,7 +60,8 @@ export const TodoslosProductos: Producto[] = [
     brand: 'Adidas',
     description: 'Ligeras y explosivas, las AE 1 Low están hechas para el estilo de juego de "Ant-Man". Perfectas para jugadores que atacan el aro sin piedad.',
     technology: 'Lightstrike',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p4',
@@ -59,7 +72,8 @@ export const TodoslosProductos: Producto[] = [
     brand: 'Nike (Jordan)',
     description: 'Inspiradas en el estilo de juego de Luka, estas zapatillas ofrecen soporte y ligereza. El "Luka .77" es un homenaje a su número de la suerte.',
     technology: 'Formula 23 Foam',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p5', 
@@ -70,7 +84,8 @@ export const TodoslosProductos: Producto[] = [
     brand: 'Anta', 
     description: 'Las zapatillas de Kyrie Irving. Diseñadas para el control y la creatividad en la cancha.', 
     technology: 'A-SHOCK',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p6', 
@@ -81,22 +96,20 @@ export const TodoslosProductos: Producto[] = [
     brand: 'Nike (Jordan)', 
     description: 'El ícono que lo empezó todo. Un clásico atemporal que combina estilo urbano y herencia del baloncesto.', 
     technology: 'Air-Sole',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p7',
     name: 'Nike LeBron XXI',
     price: 210000,
-
     imageUrl: 'https://nikeclprod.vtexassets.com/arquivos/ids/1314532-1200-1200?v=638809440120900000&width=1200&height=1200&aspect=true',
-
-    
- 
     alt: 'Zapatillas Nike LeBron XXI',
     brand: 'Nike',
     description: 'Diseñadas para el Rey. Las LeBron XXI ofrecen un sistema de cables dinámico y amortiguación Zoom Air para un control y potencia explosivos en la cancha.',
     technology: 'Zoom Air',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
 
   // --- 9 ZAPATILLAS NUEVAS (TEMPORADA 2024-2025) ---
@@ -109,94 +122,103 @@ export const TodoslosProductos: Producto[] = [
     brand: 'Nike',
     description: 'La primera zapatilla signature de Devin Booker. Combina un look clásico "off-court" con tecnología de rendimiento para la cancha, inspirada en sus autos clásicos.',
     technology: 'Cushlon 2.0 & Zoom Air',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p9',
     name: 'Nike Ja 3 "Day One"',
     price: 135000,
     imageUrl: "https://nikeclprod.vtexassets.com/arquivos/ids/1486906-1200-1200?v=638968351212630000&width=1200&height=1200&aspect=true",
-    alt: "Nike Ja 3 Day One", // <-- CORREGIDO (alt tag)
+    alt: "Nike Ja 3 Day One",
     brand: 'Nike',
     description: 'Tercera entrega de Ja Morant. Diseñada para un juego sin miedo, con máxima respuesta y soporte lateral para cambios de dirección explosivos.',
     technology: 'Zoom Air',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p10',
     name: 'Adidas AE 2 "The Future"',
     price: 160000,
     imageUrl: "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/0de143535947404c99350cbbea293441_9366/Zapatillas_Anthony_Edwards_2_Azul_JR4359_01_00_standard.jpg",
-    alt: "Adidas AE 2 The Future", // <-- CORREGIDO (alt tag)
+    alt: "Adidas AE 2 The Future",
     brand: 'Adidas',
     description: 'La secuela de la popular AE 1. Las Anthony Edwards 2 evolucionan el diseño con una estructura de TPU más agresiva y una amortiguación Boost mejorada.',
     technology: 'Boost & Lightstrike',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p11',
     name: 'Nike Sabrina 2 "Unite"',
     price: 130000,
     imageUrl: "https://images.stockx.com/images/Nike-Sabrina-2-Doernbecher-Sophia-Womens-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738344458",
-    alt: "Nike Sabrina 2 Unite", // <-- CORREGIDO (alt tag)
+    alt: "Nike Sabrina 2 Unite",
     brand: 'Nike',
     description: 'La zapatilla de Sabrina Ionescu, diseñada para jugadores que cubren toda la cancha. Combina espuma React de largo completo con una unidad Zoom Air en el antepié.',
     technology: 'React & Zoom Air',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p12',
     name: 'Nike KD 17 "Sunrise"',
     price: 170000,
     imageUrl: "https://nikeclprod.vtexassets.com/arquivos/ids/1385873-1200-1200?v=638882236814730000&width=1200&height=1200&aspect=true",
-    alt: "Nike KD 17 Sunrise", // <-- CORREGIDO (alt tag)
+    alt: "Nike KD 17 Sunrise",
     brand: 'Nike',
     description: 'Inspiradas en las clásicas Air Max Plus, las KD 17 de Kevin Durant ofrecen una amortiguación Zoom Air grande en el antepié y una placa de TPU para estabilidad.',
     technology: 'Forefoot Zoom Air',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p13',
     name: 'Air Jordan 39 "Sol"',
     price: 225000,
     imageUrl: "https://nikeclprod.vtexassets.com/arquivos/ids/1403479-1200-1200?v=638888887301900000&width=1200&height=1200&aspect=true",
-    alt: "Air Jordan 39 Sol", // <-- CORREGIDO (alt tag)
+    alt: "Air Jordan 39 Sol",
     brand: 'Nike (Jordan)',
     description: 'La última evolución de la línea insignia de Jordan. La AJ39 se enfoca en el "movimiento fluido" y la agilidad, incorporando la última versión de la placa Eclipse.',
     technology: 'ZoomX Foam & Eclipse Plate',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p14',
     name: 'New Balance Kawhi 4',
     price: 165000,
     imageUrl: "https://newbalance.cl/media/catalog/product/z/a/zapatillas-basquetbol-hombre-new-balance-kawhi-iv-rosada-lateral.png?optimize=low&bg-color=255,255,255&fit=bounds&height=650&width=650&canvas=650:650",
-    alt: "New Balance Kawhi 4", // <-- CORREGIDO (alt tag)
+    alt: "New Balance Kawhi 4",
     brand: 'New Balance',
     description: 'La zapatilla de Kawhi Leonard. Construida para el "two-way player", ofrece máxima estabilidad y retorno de energía gracias a la espuma FuelCell.',
     technology: 'FuelCell',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p15',
     name: 'Giannis Immortality 4',
     price: 180000,
     imageUrl: "https://nikeclprod.vtexassets.com/arquivos/ids/1468152-1200-1200?v=638968274844230000&width=1200&height=1200&aspect=true",
-    alt: "Nike GT Hustle 3 Wembanyama", // <-- CORREGIDO (alt tag)
+    alt: "Nike GT Hustle 3 Wembanyama",
     brand: 'Nike',
     description: 'La elección de Victor Wembanyama. Parte de la serie G.T., la Hustle 3 está diseñada para un retorno de energía sin precedentes, ideal para jugadores explosivos.',
     technology: 'Zoom Air Strobel',
-    availableSizes: TALLAS_COMUNES, // <-- AÑADIDO
+    availableSizes: TALLAS_COMUNES,
+    stock: generateStock(TALLAS_COMUNES),
   },
   {
     id: 'p16',
     name: 'Jordan Tatum 4 "Vortex"',
     price: 140000,
     imageUrl: "https://nikeclprod.vtexassets.com/arquivos/ids/1469232-1200-1200?v=638968278218030000&width=1200&height=1200&aspect=true",
-    alt: "Jordan Tatum 4 Vortex", // <-- CORREGIDO (alt tag)
+    alt: "Jordan Tatum 4 Vortex",
     brand: 'Nike (Jordan)',
     description: 'La zapatilla más ligera de la línea Jordan, diseñada para Jayson Tatum. Se centra en reducir el peso sin sacrificar el soporte, con un núcleo de espuma expuesto.',
     technology: 'Formula 23 Foam',
-    availableSizes: ["US 8", "US 8.5", "US 9", "US 9.5", "US 10"], // <-- AÑADIDO (Tallas específicas)
+    availableSizes: ["US 8", "US 8.5", "US 9", "US 9.5", "US 10"],
+    stock: generateStock(["US 8", "US 8.5", "US 9", "US 9.5", "US 10"]),
   },
 ];

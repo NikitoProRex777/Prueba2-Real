@@ -1,111 +1,116 @@
-// src/context/CartContext.tsx
-import React, { createContext, useContext, useState,type ReactNode } from 'react';
-// Importamos tu interface de producto
-import type { Producto } from '../data/producto.ts'; 
 
-// 1. Definimos el item del carrito (Producto + talla + cantidad)
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useAuth } from './AuthContext';
+
+// 1. Definimos los tipos
 export interface CartItem {
-  id: string; // ID único (ej: 'p1-US9')
-  product: Producto;
+  productId: string;
+  nombreProducto: string;
+  precio: number;
+  imagenUrl: string;
   size: string;
   quantity: number;
 }
 
-// 2. Definimos el tipo del Contexto
 interface CartContextType {
   cartItems: CartItem[];
-  // La función ahora debe aceptar 'product' Y 'size'
-  addItemToCart: (product: Producto, size: string) => void;
-  removeFromCart: (cartId: string) => void;
-  incrementItem: (cartId: string) => void;
-  decrementItem: (cartId: string) => void;
+  addItemToCart: (product: any, size: string) => Promise<void>;
+  clearCart: () => Promise<void>;
   getCartTotalItems: () => number;
   getCartTotalPrice: () => number;
 }
 
+// 2. Creamos el contexto
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-// 3. Creamos el Proveedor (Provider)
-export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+// 3. Definimos las props del Provider explícitamente
+interface CartProviderProps {
+  children: React.ReactNode; // Usamos React.ReactNode directamente para evitar errores de import
+}
+
+export const CartProvider = ({ children }: CartProviderProps) => {
+  const { token, isAuthenticated } = useAuth();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  // 4. Lógica para AÑADIR item (con talla)
-  const addItemToCart = (product: Producto, size: string) => {
-    // Creamos un ID único para la combinación producto+talla
-    const cartId = `${product.id}-${size}`; 
+  // --- Cargar Carrito ---
+  useEffect(() => {
+    if (isAuthenticated && token) {
+      fetchCart();
+    } else {
+      setCartItems([]);
+    }
+  }, [isAuthenticated, token]);
 
-    setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === cartId);
-
-      if (existingItem) {
-        // Si ya existe (mismo producto, misma talla), solo incrementamos la cantidad
-        return prevItems.map(item =>
-          item.id === cartId ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        // Si es nuevo, lo añadimos al array
-        const newItem: CartItem = { id: cartId, product, size, quantity: 1 };
-        return [...prevItems, newItem];
+  const fetchCart = async () => {
+    try {
+      const res = await fetch('http://localhost:8084/api/v1/cart', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.items) setCartItems(data.items);
       }
-    });
-    console.log(`Añadido: ${product.name}, Talla: ${size}`);
+    } catch (error) {
+      console.error("Error cargando carrito:", error);
+    }
   };
 
-  // 5. Lógica para QUITAR item (por su ID único)
-  const removeFromCart = (cartId: string) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== cartId));
+  // --- Agregar Item ---
+  const addItemToCart = async (product: any, size: string) => {
+    const newItem: CartItem = {
+      productId: product.id,
+      nombreProducto: product.name || product.nombre,
+      precio: product.price || product.precio,
+      imagenUrl: product.imageUrl || product.imagenUrl,
+      size: size,
+      quantity: 1
+    };
+
+    setCartItems(prev => [...prev, newItem]);
+
+    if (isAuthenticated && token) {
+      try {
+        await fetch('http://localhost:8084/api/v1/cart/add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(newItem)
+        });
+      } catch (error) {
+        console.error("Error guardando en backend:", error);
+      }
+    }
   };
 
-  // 6. Lógica para INCREMENTAR
-  const incrementItem = (cartId: string) => {
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.id === cartId ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+  // --- Vaciar ---
+  const clearCart = async () => {
+    setCartItems([]);
+    if (isAuthenticated && token) {
+      try {
+        await fetch('http://localhost:8084/api/v1/cart/clear', {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+      } catch (error) {
+        console.error("Error vaciando:", error);
+      }
+    }
   };
 
-  // 7. Lógica para DECREMENTAR
-  const decrementItem = (cartId: string) => {
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.id === cartId && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
-  };
+  const getCartTotalItems = () => cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const getCartTotalPrice = () => cartItems.reduce((acc, item) => acc + (item.precio * item.quantity), 0);
 
-  // 8. Lógica para OBTENER TOTAL DE ITEMS (para el Header)
-  const getCartTotalItems = () => {
-    // Suma las 'quantity' de todos los items
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
-  };
-
-  // 9. Lógica para OBTENER PRECIO TOTAL (para el Carrito)
-  const getCartTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + (item.product.price * item.quantity), 0);
-  };
-
-
-  const value = {
-    cartItems,
-    addItemToCart,
-    removeFromCart,
-    incrementItem,
-    decrementItem,
-    getCartTotalItems,
-    getCartTotalPrice,
-  };
-
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={{ cartItems, addItemToCart, clearCart, getCartTotalItems, getCartTotalPrice }}>
+      {children}
+    </CartContext.Provider>
+  );
 };
 
-// 10. Hook para consumir el contexto
 export const useCart = () => {
   const context = useContext(CartContext);
-  if (context === undefined) {
-    throw new Error('useCart debe ser usado dentro de un CartProvider');
-  }
+  if (context === undefined) throw new Error('useCart debe usarse dentro de CartProvider');
   return context;
 };

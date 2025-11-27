@@ -1,29 +1,101 @@
-/* src/pages/Novedades.css */
-
-.novedades-page-container {
-  width: 100%;
+.novedades-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: sans-serif;
 }
 
+/* Header Negro */
 .novedades-hero {
-  /* Fondo oscuro y texto claro para impacto */
   background-color: #111;
-  color: #ffffff;
-  padding: 4rem 2rem;
+  color: white;
+  padding: 60px 20px;
+  border-radius: 15px;
   text-align: center;
-  margin-bottom: 2rem; /* Espacio antes de que empiecen los productos */
+  margin-bottom: 50px;
 }
 
 .novedades-hero h1 {
   font-size: 3rem;
-  font-weight: 700;
   margin: 0;
+  text-transform: uppercase;
 }
 
 .novedades-hero p {
-  font-size: 1.25rem;
   color: #ccc;
-  margin-top: 0.5rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 10px;
+}
+
+/* Mensajes de Estado */
+.loading-msg, .error-msg {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 50px;
+}
+
+.error-msg {
+  color: red;
+  font-weight: bold;
+}
+
+/* Tarjeta de Producto */
+.lanzamiento-card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 50px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* IMAGEN GRANDE (CLAVE) */
+.lanzamiento-img {
+  width: 100%;
+  height: 450px; /* Altura fija obligatoria */
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.lanzamiento-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Muestra la zapatilla completa */
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+
+/* Info */
+.lanzamiento-info {
+  padding: 30px;
+  text-align: center;
+}
+
+.marca-tag {
+  color: #888;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.lanzamiento-info h2 {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.lanzamiento-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.btn-ver-novedad {
+  background-color: black;
+  color: white;
+  padding: 15px 40px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  display: inline-block;
 }

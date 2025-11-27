@@ -1,0 +1,176 @@
+.carrusel-container {
+  width: 100%;
+  overflow: hidden; /* Oculta lo que se sale de la pantalla */
+  background-color: #f4f4f4; /* Fondo gris suave para destacar las zapas blancas */
+  padding: 30px 0;
+  margin-bottom: 40px;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+}
+
+.carrusel-track {
+  display: flex;
+  gap: 40px; /* Espacio entre zapatillas */
+  width: max-content; /* El ancho se ajusta al contenido */
+  animation: scrollInfinito 60s linear infinite; /* Animación lenta y continua */
+}
+
+/* Tarjeta individual de cada zapatilla en el carrusel */
+.carrusel-item {
+  width: 280px;  /* Ancho fijo */
+  height: 280px; /* Alto fijo (Cuadrado perfecto) */
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  flex-shrink: 0; /* Evita que se aplasten */
+  transition: transform 0.3s;
+}
+
+.carrusel-item:hover {
+  transform: scale(1.05); /* Efecto pop al pasar el mouse */
+}
+
+.carrusel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* CLAVE: Muestra la zapatilla entera sin recortar nada */
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+}
+
+/* Animación para mover el carrusel */
+@keyframes scrollInfinito {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Se mueve hasta la mitad (el duplicado) */
+}
+
+/* Pausar animación al pasar el mouse */
+.carrusel-track:hover {
+  animation-play-state: paused;
+}
+
+/* --- FORMULARIO DE RESEÑAS --- */
+.resena-form-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  margin: 0 auto 40px auto;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+/* --- ESTRELLAS (ALTA VISIBILIDAD) --- */
+.star-selector {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.star-input {
+  font-size: 50px; /* ¡Gigantes! */
+  cursor: pointer;
+  color: #d1d1d1; /* Gris oscuro para las vacías */
+  transition: transform 0.2s, color 0.2s;
+  /* Sombra para que resalten del fondo */
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1)); 
+}
+
+.star-input:hover {
+  transform: scale(1.3);
+  color: #ffca28;
+}
+
+.star-input.selected {
+  color: #ffc107; /* Dorado intenso */
+  filter: drop-shadow(0 0 5px rgba(255, 193, 7, 0.8)); /* Resplandor */
+}
+
+/* --- CAJA DE TEXTO (ALTO CONTRASTE) --- */
+.resena-textarea {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #999; /* Borde gris oscuro visible */
+  background-color: #fff;
+  border-radius: 10px;
+  min-height: 120px;
+  font-family: inherit;
+  font-size: 16px;
+  resize: vertical;
+  outline: none;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  transition: border-color 0.3s;
+}
+
+.resena-textarea:focus {
+  border-color: #000; /* Negro total al escribir */
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+}
+
+.resena-textarea::placeholder {
+  color: #666; /* Placeholder legible */
+  font-style: italic;
+}
+
+/* --- BOTÓN --- */
+.btn-enviar-resena {
+  background-color: #000;
+  color: white;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s;
+}
+
+.btn-enviar-resena:hover {
+  background-color: #333;
+}
+
+/* --- TARJETAS DE COMENTARIOS --- */
+.reseña-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+  padding-bottom: 50px;
+}
+
+.reseña-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.reseña-card h3 {
+  margin: 0;
+  color: #333;
+}
+
+.reseña-card .estrellas {
+  color: #ffc107;
+  font-size: 20px;
+  margin: 5px 0 15px 0;
+}
+
+.login-warning {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 10px;
+  color: #856404;
+  max-width: 500px;
+  margin: 20px auto;
+}

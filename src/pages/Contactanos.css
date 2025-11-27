@@ -1,53 +1,145 @@
-/* src/pages/Contactanos.css */
+.contact-container {
+  max-width: 600px;
+  margin: 60px auto; /* Más aire arriba */
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 20px; /* Bordes más redondeados */
+  /* Sombra difusa para elevar la tarjeta del fondo */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* Borde superior decorativo grueso */
+  border-top: 8px solid #000; 
+}
 
-.contactanos-container {
-  /* --- REGLAS FALTANTES --- */
+/* Títulos */
+.contact-container h1 {
+  color: #000;
+  margin-bottom: 15px;
+  font-size: 2.8rem; /* Título grande */
+  font-weight: 900; /* Negrita extra fuerte */
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+.contact-description {
+  color: #666;
+  margin-bottom: 40px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Estructura del Formulario */
+.contact-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-  /* ¡Esta es la línea clave que faltaba! */
-  background-color: #212529; /* Color de Bootstrap 'bg-dark' */
-  /* --- FIN REGLAS FALTANTES --- */
-  
-  /* Asegura que ocupe al menos 75% de la altura de la vista */
-  min-height: 75vh; 
-  padding: 4rem 1.5rem;
+  gap: 30px; /* Espacio generoso entre campos */
 }
 
-/* Ajusta los inputs para el fondo oscuro */
-.contactanos-container .form-control {
-  background-color: #343a40;
-  color: #fff;
-  border: 1px solid #495057;
+/* --- INPUTS Y TEXTAREA (ESTILO BASE) --- */
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 20px;
+  background-color: #f9f9f9; /* Fondo gris muy suave */
+  /* Borde negro visible pero delgado por defecto */
+  border: 2px solid #e0e0e0; 
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  box-sizing: border-box;
+  font-family: inherit;
+  
+  /* Transición suave para el efecto al hacer clic */
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); 
 }
 
-/* Estilo al seleccionar el input */
-.contactanos-container .form-control:focus {
-  background-color: #495057;
+/* --- ESTADO HOVER (AL PASAR EL MOUSE) --- */
+.form-input:hover, .form-textarea:hover {
+  border-color: #bbb; /* Se oscurece un poco */
+  background-color: #fff;
+}
+
+/* --- ESTADO FOCUS (AL HACER CLIC - EFECTO "ENCIMA") --- */
+.form-input:focus, .form-textarea:focus {
+  background-color: #fff; 
+  /* Borde NEGRO GRUESO */
+  border-color: #000; 
+  border-width: 3px; 
+  outline: none; /* Quita el borde azul feo del navegador */
+  
+  /* Sombra grande para que parezca que flota */
+  box-shadow: 0 15px 25px rgba(0,0,0,0.1); 
+  
+  /* Movimiento físico hacia arriba */
+  transform: translateY(-4px); 
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 180px;
+}
+
+/* Placeholder (Texto de ayuda) */
+::placeholder {
+  color: #999;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* --- BOTÓN DE ENVIAR (ROBUSTO) --- */
+.btn-enviar {
+  background-color: #000;
   color: #fff;
-  border-color: #0d6efd; 
+  padding: 20px;
+  border: none;
+  border-radius: 50px; /* Píldora */
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  /* Sombra inicial */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-enviar:hover {
+  background-color: #222; /* Un poco más claro */
+  transform: translateY(-3px) scale(1.02); /* Crece y sube */
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3); /* Sombra más grande */
+}
+
+.btn-enviar:active {
+  transform: scale(0.98); /* Efecto de presionar */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.btn-enviar:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
   box-shadow: none;
 }
 
-/* Texto del placeholder */
-.contactanos-container .form-control::placeholder {
-  color: #adb5bd;
+/* Mensajes de Alerta */
+.status-message {
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  text-align: center;
 }
 
-/* --- REGLA FALTANTE --- */
-/* Mensaje de error de Bootstrap (invalid-feedback) */
-.contactanos-container .invalid-feedback.d-block {
-  color: #dc3545; /* Rojo de Bootstrap 'text-danger' */
-  text-align: left;
-  /* Asegúrate de que el fondo sea transparente */
-  background-color: transparent; 
+.success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border: 2px solid #badbcc;
 }
 
-/* Estilo para el botón de enviar */
-.contactanos-container .btn-light {
-  font-weight: 600;
-  padding: 0.75rem;
-  margin-top: 1rem;
+.error {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 2px solid #f5c2c7;
 }
